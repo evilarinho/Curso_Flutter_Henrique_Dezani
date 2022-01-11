@@ -110,12 +110,18 @@ CONCLUÍDO: 10/01/2022
 ----------------------------------------------------------------------------------
 17. TextField, StatefulWidget (setState) e TextEditingController
 
-CONCLUÍDO: 
+CONCLUÍDO: 11/01/2022
 
-
+ATENÇÃO: A partir dessa aula a reprodução do exercício gerou 27 erros/problemas devido a enorme diferença da versão do Flutter em uso pelo instrutor e a versão atual, tornando inviável a reprodução 
+ 
 ----------------------------------------------------------------------------------
 18. Conclusão do aplicativo e do curso
 
-CONCLUÍDO: 
+CONCLUÍDO: 11/01/2022
 
+ATENÇÃO: A partir da aula 17 a reprodução do exercício gerou 27 erros/problemas devido a enorme diferença da versão do Flutter em uso pelo instrutor e a versão atual, tornando inviável a reprodução 
+
+
+*** FIM ***
+--------------------------------------
 

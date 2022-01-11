@@ -1,4 +1,7 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
+import 'tarefa.dart';
 
 void main() {
   runApp(ListaTarefasApp());
@@ -8,60 +11,81 @@ class ListaTarefasApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new MaterialApp(home: new ListaScreen());
+    return MaterialApp(home: ListaScreen());
   }
 }
 
-class ListaScreen extends StatelessWidget {
-  Widget getItem() {
-    return new Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      IconButton(
-        icon: new Icon(
-          Icons.check_box,
-          color: Colors.green,
+class ListaScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return ListaScreenState();
+    // TODO: implement createState
+    
+  }
+
+}
+
+class ListaScreenState extends StatelessWidget {
+  List<Tarefa> tarefas = <Tarefa>[];
+
+  void adicionaTarefa(String nome) {
+    setState(()
+      tarefas.add(Tarefa(nome));
+    });    
+  }
+
+  Widget getItem(Tarefa tarefa) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.check_box,
+            color: Colors.green,
+          ),
+          iconSize: 42.0,
+          onPressed: () {},
         ),
-        iconSize: 42.0,
-        onPressed: () {},
-      ),
-      new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text("Lavar o carro bem lavado"),
-          Text("13/09/2018")
-        ],
-      )
-    ]);
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              tarefa.nome,
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            ),
+            Text(tarefa.data.toIso8601String())
+          ],
+        )
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Scaffold(
-        appBar: new AppBar(title: new Text("Lista de Tarefas")),
+    return Scaffold(
+        appBar: AppBar(title: Text("Lista de Tarefas")),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text("Hello Wordl"),
+            Container(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  onSubmitted: (value) {
+                    adicionaTarefa(value);
+                  },
+                )
+            ),
             Expanded(
-                child: ListView(
-              children: <Widget>[
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-                getItem(),
-              ],
-            ))
+                child: ListView.builder(
+                     itemCount: tarefas.length,
+                     itemBuilder: (_, indice) {
+                       return getItem(tarefas[indice]);
+                     },        )
+            )            
           ],
-        ));
-  }
+        )
+    )
+  }          }
 }
